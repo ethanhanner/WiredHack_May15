@@ -1,0 +1,13 @@
+create table Dealership 
+(
+BrandName Varchar(30),
+DealerName Varchar(255) Primary Key,
+SignedOn Varchar(30),
+DealerCode Int,
+ManfRegionCode Int,
+Address1 Varchar(255),
+Address2 Varchar(255),
+City Varchar(100),
+State Varchar(2),
+PostalCode Int
+);
