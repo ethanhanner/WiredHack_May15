@@ -59,22 +59,10 @@ function initialize() {
 		add += dealerships[index].PostalCode;
 		addresses[index] = {
 			address: add,
-			dealerCode: dealerships[index].DealerCode
+			dealerCode: dealerships[index].DealerCode,
+			dealerName: dealerships[index].DealerName
 		};
 	}
-	
-	//addresses[0] = {
-		//address: '882 Maplewood Ln. Rock Hill, SC 29730',
-		//dealerCode: '112897'
-	//};
-	//addresses[1] = {
-		//address: '36037',
-		//dealerCode: '112897'
-	//};
-	//addresses[2] = {
-		//address: 'Fort Mill, SC',
-		//dealerCode: '111111'
-	//};
 
 
 	var tempfrm = {
@@ -86,14 +74,12 @@ function initialize() {
 		meters: '0'
 		
 	 };
-    console.log(tempfrm.lat1);
 	
 	if (geocoder) {
 		geocoder.geocode({ 'address': zipCode }, function (results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				// IF GEOLOCATION API WORKS
 				
-				console.log(results[0].geometry.location);
 				tempfrm.lat1 = results[0].geometry.location.A;
 				tempfrm.lon1 = results[0].geometry.location.F;
 				var zipLatLng = new google.maps.LatLng(tempfrm.lat1, tempfrm.lon1);
@@ -121,41 +107,40 @@ function initialize() {
 				console.log("Geocoding failed: " + status);
 			}
 		});
-	}    
-	for (var location in addresses) {
+	}  
+	console.log(dealerships.length);
+	for (var x = 0; x < dealerships.length; x++) {
 		if (geocoder) {
-			geocoder.geocode({ 'address': addresses[location].address }, function (results, status) {
+			geocoder.geocode({ 'address': addresses[x].address }, function (results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
 					// IF GEOLOCATION API WORKS
-					
-					console.log(results[0].geometry.location);
 					tempfrm.lat2 = results[0].geometry.location.A;
 					tempfrm.lon2 = results[0].geometry.location.F;
 					tempfrm.mi = distance(tempfrm.lat1,tempfrm.lon1,tempfrm.lat2,tempfrm.lon2);
 					tempfrm.meters = 1609.34 * tempfrm.mi
-					console.log("Distance = ", tempfrm.mi, tempfrm.meters);
 					if(tempfrm.meters <= radius) {
 						var addressLocation = new google.maps.LatLng(results[0].geometry.location.A, results[0].geometry.location.F);
-					
+						console.log(x);
 						var marker = new google.maps.Marker({
 							position: addressLocation,
 							map: map,
-							title: 'New Address'
+							title: addresses[x].dealerName
 						});
-					
-						var contentString = '<div class="infoWindow">'+
+						console.log(i);
+						var contentString = '<div id="infoWindow'+x+'" class="infoWindow">'+
 							'<div class="siteNotice">'+
 							'</div>'+
-							'<h1 class="firstHeading">Sample Chevrolet</h1>'+
+							'<h1 class="firstHeading">' + dealerships[x].DealerName + '</h1>'+
 							'<div class="infoContent">'+
 							'<ul>'+
 							'<li><b>Brand: </b>Chevrolet</li>'+
-							'<li><b>Dealer Code: </b>'+ addresses[location].dealerCode +'</li>'+
+							'<li><b>Dealer Code: </b>'+ addresses[x].dealerCode +'</li>'+
 							'<li><b><u>Address</u></b></li>'+
 							'<li>2900 Government Blvd.<br/>Mobile, AL 36606</li>'+
 							'</ul>'+
 							'</div>'+
 							'</div>';
+						console.log(contentString);
 				
 						var infowindow = new google.maps.InfoWindow({
 							content: contentString
@@ -177,64 +162,7 @@ function initialize() {
 
 google.maps.event.addDomListener(window, 'load', getPHPdata);
 
-/*
-
-var Rm = 3961; // mean radius of the earth (miles) at 39 degrees from the equator
-var Rk = 6373; // mean radius of the earth (km) at 39 degrees from the equator
-	
-
-function findDistance(frm) {
-	var t1, n1, t2, n2, lat1, lon1, lat2, lon2, dlat, dlon, a, c, dm, dk, mi, km;
-	
-	// get values for lat1, lon1, lat2, and lon2
-	t1 = frm.lat1;
-	n1 = frm.lon1;
-	t2 = frm.lat2;
-	n2 = frm.lon2;
-	console.log("HERE AT FUNCTION !: ", frm.lat1, frm.lat1.value, n1, n2);
-	// convert coordinates to radians
-	lat1 = deg2rad(t1);
-	lon1 = deg2rad(n1);
-	lat2 = deg2rad(t2);
-	lon2 = deg2rad(n2);
-	
-	// find the differences between the coordinates
-	dlat = lat2 - lat1;
-	dlon = lon2 - lon1;
-	
-	// here's the heavy lifting
-	a  = Math.pow(Math.sin(dlat/2),2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(dlon/2),2);
-	c  = 2 * Math.atan2(Math.sqrt(a),Math.sqrt(1-a)); // great circle distance in radians
-	dm = c * Rm; // great circle distance in miles
-	dk = c * Rk; // great circle distance in km
-	
-	// round the results down to the nearest 1/1000
-	mi = round(dm);
-	km = round(dk);
-	
-	// display the result
-	frm.mi.value = mi;
-	frm.km.value = km;
-	console.log("PUIE :", dm)
-	return mi;
-}
-
-
-// convert degrees to radians
-function deg2rad(deg) {
-	rad = deg * Math.PI/180; // radians = degrees * pi/180
-	return rad;
-}
-
-
-// round to the nearest 1/1000
-function round(x) {
-	return Math.round( x * 1000) / 1000;
-}
-*/
-
 function distance(lat1, lon1, lat2, lon2) {
-   console.log(lat1,lon1,lat2,lon2)
     var radlat1 = Math.PI * lat1/180
     var radlat2 = Math.PI * lat2/180
     var radlon1 = Math.PI * lon1/180
