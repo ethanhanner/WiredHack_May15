@@ -28,11 +28,7 @@
       }
     </style>
     <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<<<<<<< HEAD
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-=======
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
->>>>>>> 47aca7774a21e46e6f1bc3b9412bca3d82357dff
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script>
 
@@ -52,34 +48,15 @@ function initialize() {
 		dealerCode: '112897'
 	};
 	addresses[1] = {
-		address: '36037',
+		address: 'York, SC',
 		dealerCode: '112897'
 	};
 	addresses[2] = {
 		address: 'Fort Mill, SC',
 		dealerCode: '111111'
 	};
-<<<<<<< HEAD
 	
-=======
-	var data_from_ajax = {};
 
-$.get('http://localhost/WiredHack_May15/selectdata.php', function(data) {
-  data_from_ajax = data;
-  console.log(data_from_ajax)
-});
-console.log(data_from_ajax);
->>>>>>> 47aca7774a21e46e6f1bc3b9412bca3d82357dff
-	var tempfrm = {
-		lat1 : '0',
-		lat2 : '0',
-		lon1 : '0',
-		lon2 : '0',
-		mi: '0',
-		meters: '0'
-		
-	 };
-    console.log(tempfrm.lat1);
 	
 	if (geocoder) {
 		geocoder.geocode({ 'address': zipCode }, function (results, status) {
@@ -87,8 +64,7 @@ console.log(data_from_ajax);
 				// IF GEOLOCATION API WORKS
 				
 				console.log(results[0].geometry.location);
-				tempfrm.lat1 = results[0].geometry.location.A;
-				tempfrm.lon1 = results[0].geometry.location.F;
+				
 				var radiusCenter = new google.maps.LatLng(results[0].geometry.location.A, results[0].geometry.location.F);
 				
 				var populationOptions = {
@@ -116,11 +92,7 @@ console.log(data_from_ajax);
 					// IF GEOLOCATION API WORKS
 					
 					console.log(results[0].geometry.location);
-					tempfrm.lat2 = results[0].geometry.location.A;
-					tempfrm.lon2 = results[0].geometry.location.F;
-					tempfrm.mi = distance(tempfrm.lat1,tempfrm.lon1,tempfrm.lat2,tempfrm.lon2);
-					tempfrm.meters = 1609.34 * tempfrm.mi
-					console.log("Distance = ", tempfrm.mi, tempfrm.meters);
+					
 					var addressLocation = new google.maps.LatLng(results[0].geometry.location.A, results[0].geometry.location.F);
 					
 					var marker = new google.maps.Marker({
@@ -182,8 +154,8 @@ console.log(data_from_ajax);
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-/*
 
+/*
 var Rm = 3961; // mean radius of the earth (miles) at 39 degrees from the equator
 var Rk = 6373; // mean radius of the earth (km) at 39 degrees from the equator
 	
@@ -192,11 +164,11 @@ function findDistance(frm) {
 	var t1, n1, t2, n2, lat1, lon1, lat2, lon2, dlat, dlon, a, c, dm, dk, mi, km;
 	
 	// get values for lat1, lon1, lat2, and lon2
-	t1 = frm.lat1;
-	n1 = frm.lon1;
-	t2 = frm.lat2;
-	n2 = frm.lon2;
-	console.log("HERE AT FUNCTION !: ", frm.lat1, frm.lat1.value, n1, n2);
+	t1 = frm.lat1.value;
+	n1 = frm.lon1.value;
+	t2 = frm.lat2.value;
+	n2 = frm.lon2.value;
+	
 	// convert coordinates to radians
 	lat1 = deg2rad(t1);
 	lon1 = deg2rad(n1);
@@ -220,8 +192,6 @@ function findDistance(frm) {
 	// display the result
 	frm.mi.value = mi;
 	frm.km.value = km;
-	console.log("PUIE :", dm)
-	return mi;
 }
 
 
@@ -235,23 +205,9 @@ function deg2rad(deg) {
 // round to the nearest 1/1000
 function round(x) {
 	return Math.round( x * 1000) / 1000;
-}
-*/
+}*/
 
-function distance(lat1, lon1, lat2, lon2) {
-   console.log(lat1,lon1,lat2,lon2)
-    var radlat1 = Math.PI * lat1/180
-    var radlat2 = Math.PI * lat2/180
-    var radlon1 = Math.PI * lon1/180
-    var radlon2 = Math.PI * lon2/180
-    var theta = lon1-lon2
-    var radtheta = Math.PI * theta/180
-    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-    dist = Math.acos(dist)
-    dist = dist * 180/Math.PI
-    dist = dist * 60 * 1.1515
-    return dist
-}
+
 
     </script>
   </head>

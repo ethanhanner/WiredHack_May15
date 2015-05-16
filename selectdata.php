@@ -15,7 +15,7 @@
 
 <div id="dom-target" style="display:none;">
 	<?php
-		$servername = "localhost";
+		$servername = "192.168.1.82";
 		$username = "root";
 		$password = "vmo55";
 		
