@@ -1,0 +1,93 @@
+body{
+	font-family: 'Libre Baskerville', serif;
+}
+.site-banner{
+background: url('../images/dealership2.jpg') no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height:325px;
+}
+.transparent{
+	background-color:rgba(255,255,255, .7);
+	height:100%;
+}
+.transparent-gray{
+	background-color:rgba(120,120,120, .1);
+}
+.surround-login{	
+	width:350px;
+}
+.site-banner .transparent{
+	height:325px;
+	padding-top:60px;
+}
+.loginForm{
+	margin:40px auto 0;
+	width:300px;
+}
+.loginForm legend{
+	width:auto;
+	border:none;
+	text-align:center;
+}
+.loginForm fieldset{
+	border: 2px groove gray;
+	padding:20px;
+}
+.loginForm button{
+	margin:20px 0px 20px 120px;
+}
+.loginForm label{
+	width:100px;
+}
+/*Inner Page*/
+.inner-page .site-banner{
+  height:225px;
+}
+.inner-page .site-banner .transparent{
+	padding-top:5px;
+}
+.side-menu{
+	padding-left:0px;
+}
+.sidebar-nav{
+	min-width:240px;
+}
+.navbar-brand {
+	padding-left:0px;
+	padding-bottom:10px;
+	height:auto;
+}
+.sidebar-nav .navbar li a {
+	padding: 20px 15px;
+}
+@media (min-width: 768px){
+	.navbar {
+		border-radius:0;
+	}
+}
+@media (min-width: 992px) {
+	.sidebar-nav .navbar .navbar-collapse {
+		padding: 0;
+		max-height: none;
+	}
+	.sidebar-nav .navbar ul {
+		float: none;
+	}
+	.sidebar-nav .navbar ul:not {
+		display: block;
+	}
+	.sidebar-nav .navbar li {
+		float: none;
+		display: block;
+	}
+	.sidebar-nav .navbar li a {
+		padding: 20px 15px;
+		border-top:thin solid #e7e7e7;
+	}
+	.sidebar-nav .navbar li:first-child a {
+		border-top:none;
+	}
+}
