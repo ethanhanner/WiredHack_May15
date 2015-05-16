@@ -1,3 +1,44 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon.eot?-ww679n');
+	src:url('../fonts/icomoon.eot?#iefix-ww679n') format('embedded-opentype'),
+		url('../fonts/icomoon.woff?-ww679n') format('woff'),
+		url('../fonts/icomoon.ttf?-ww679n') format('truetype'),
+		url('../fonts/icomoon.svg?-ww679n#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.icon-location:before {
+	content: "\e947";
+}
+
+.icon-key:before {
+	content: "\e98d";
+}
+
+.icon-stats-dots:before {
+	content: "\e99b";
+}
+.icon-location:before , .icon-key:before, .icon-stats-dots:before {
+	font-size:50px;
+	color:rgb(180,32,38);
+}
+
+
 body{
 	font-family: 'Libre Baskerville', serif;
 }
@@ -17,27 +58,35 @@ background: url('../images/dealership2.jpg') no-repeat center center;
 	background-color:rgba(120,120,120, .1);
 }
 .surround-login{	
+	margin-top:40px;
 	width:350px;
+	padding-bottom:25px;
+	padding-top:20px;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;	
 }
 .site-banner .transparent{
 	height:325px;
 	padding-top:60px;
 }
 .loginForm{
-	margin:40px auto 0;
+	margin-left:auto;
+	margin-right:auto;
 	width:300px;
 }
 .loginForm legend{
 	width:auto;
 	border:none;
 	text-align:center;
-}
+
+	width: 50%;}
 .loginForm fieldset{
 	border: 2px groove gray;
 	padding:20px;
 }
 .loginForm button{
-	margin:20px 0px 20px 120px;
+	margin: 20px 0px 20px 90px;
 }
 .loginForm label{
 	width:100px;
@@ -60,8 +109,47 @@ background: url('../images/dealership2.jpg') no-repeat center center;
 	padding-bottom:10px;
 	height:auto;
 }
-.sidebar-nav .navbar li a {
-	padding: 20px 15px;
+.landing-selection{
+	margin-top:50px;
+	padding:50px 0px;
+}
+.star{
+	color:rgb(180,32,38);
+	font-size:12px;
+}
+legend .star{
+	float:right;
+	padding-top:5px;
+}
+ol{
+	margin-top:20px;
+}
+ol li{
+	margin-bottom:5px;
+	padding-bottom:5px;
+	border-bottom:thin solid #e7e7e7; 
+}
+table{
+	display:inline-block;
+	vertical-align:top;
+}
+td{
+	min-width: 82px;
+	padding:2px 0;
+}
+td:first-child{
+	color:rgb(180,32,38);
+}
+.mapped h2{
+margin-bottom:45px;
+}
+.scope-form input[type=radio], .scope-form input[type=checkbox] {
+	margin:0 10px;
+}
+.map{
+	margin-top:25px;
+	width:100%;
+	height:auto;
 }
 @media (min-width: 768px){
 	.navbar {
@@ -89,5 +177,6 @@ background: url('../images/dealership2.jpg') no-repeat center center;
 	}
 	.sidebar-nav .navbar li:first-child a {
 		border-top:none;
+		padding: 0px 15px 10px;
 	}
 }

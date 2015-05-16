@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -34,38 +34,48 @@
 				  <ul class="nav navbar-nav">
 					<li class="navbar-brand"><a href="dashboard.html"><h2>Paige Meinke</h2></a></li>
 					<li><a href="mapped.html">Mapped Out</a></li>
-					<li><a href="#">Sales Charts</a></li>
-					<li><a href="#">Database</a></li>
+					<li><a href="charting.html">Charting</a></li>
+					<li><a href="databases.html">Databases</a></li>
 				  </ul>
 				</div><!--/.nav-collapse -->
 			  </div>
 			</div>
 		</aside>
-		<div class="col-md-9">
-			<h2>Choose Your Landing Page</h2>
-			<div class="row">
-				<div class="col-md-4 text-center">
-					<div class="landing-selection transparent-gray">
-						<span class="icon-location"></span>
-						<h3>Mapped Out</h3>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="landing-selection transparent-gray">
-						<span class="icon-stats-dots"></span>
-						<h3>Sales Charts</h3>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="landing-selection transparent-gray">
-						<span class="icon-key"></span>
-						<h3>Database</h3>
-					</div>
-				</div>
-			</div>
+		<div class="col-md-9 charted">
+		<div id="chart_div">
 		</div>
-	</div>
-	<script type="text/js" src="js/bootstrap.min.js"></script>
-</body>
+	
+	  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+  google.load('visualization', '1', {packages: ['corechart', 'bar']});
+google.setOnLoadCallback(drawBarColors);
 
+function drawBarColors() {
+      var data = google.visualization.arrayToDataTable([
+        ['Dealership', '2013', '2014'],
+        ['Bay Chevrolet, AZ', 81750, 80080],
+        ['Kendall Toyota, AZ', 37920, 36940],
+        ['Camelback Toyota, AZ', 26950, 28960],
+        ['Hatch Toyota, AZ', 20990, 19530],
+        ['Mossy Ford, AZ', 15260, 15170]
+      ]);
+
+      var options = {
+        title: 'Sales of',
+        chartArea: {width: '50%'},
+        colors: ['#b0120a', '#ffab91'],
+        hAxis: {
+          title: 'Total Sales',
+          minValue: 0
+        },
+        vAxis: {
+          title: 'Dealerships'
+        }
+      };
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+	</script>
+	</div>
+</body>
 </html>

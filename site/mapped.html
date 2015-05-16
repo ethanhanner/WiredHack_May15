@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Insignia Analytics</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="css/style.css">	
+	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
+	
+</head>
+<body class="container-fluid inner-page">
+	<header class="site-banner row">
+		<div class="transparent">
+			<div class="col-md-12">
+				<img src="images/full-logo.png" class="center-block img-responsive" id="insignia"/>
+			</div>
+		</div>
+	</header>
+	<div class="row">
+		<aside class="col-md-3 side-menu">
+			<div class="sidebar-nav">
+			  <div class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+				</div>
+				<div class="navbar-collapse collapse sidebar-navbar-collapse">
+				  <ul class="nav navbar-nav">
+					<li class="navbar-brand"><a href="dashboard.html"><h2>Paige Meinke</h2></a></li>
+					<li><a href="mapped.html">Mapped Out</a></li>
+					<li><a href="charting.html">Charting</a></li>
+					<li><a href="databases.html">Databases</a></li>
+				  </ul>
+				</div><!--/.nav-collapse -->
+			  </div>
+			</div>
+		</aside>
+		<div class="col-md-9 mapped">
+			<div class="row">
+				<div class="col-md-8">
+					<h2>Select Your Scope</h2>
+					<form class="scope-form">
+						<div class="row">
+							<div class="col-md-6">
+								<fieldset>
+									<legend>Location<span class="star">*<span>Required</legend>
+									<div class="form-group">
+										<label>Zipcode<span class="star">*<span></label>
+										<input type="number" name="zipcode" class="form-control">
+									</div>
+									<div class="form-group">
+										<label>Distance Away (Miles)<span class="star">*<span></label>
+										<input type="number" name="distance" class="form-control">
+									</div>
+								</fieldset>
+								<fieldset>
+									<legend>Sales</legend>
+									<div class="col-md-6">
+										<div class="form-group">
+											<input type="radio" name="saleValue" value="less"><label>Less Than</label>
+											<input type="radio" name="saleValue" value="more"><label>More Than</label><br />
+											<input type="number" name="saleAmount" class="form-control">
+											<label>Year</label><input type="number" name="year" class="form-control">
+										</div>
+								</fieldset>
+							</div>
+							<div class="col-md-6">
+								<fieldset>
+									<legend>In Results Show</legend>
+									<div class="form-group">
+										<input type="checkbox" name="show" value="brand"><label>Brand Name</label><br />
+										<input type="checkbox" name="show" value="dealer"><label>Dealership</label><br />
+										<input type="checkbox" name="show" value="joinDate"><label>Join Date</label><br />
+										<input type="checkbox" name="show" value="dealerCode"><label>Dealer Code</label><br />
+										<input type="checkbox" name="show" value="regionCode"><label>Region Code</label><br />
+										<input type="checkbox" name="show" value="address"><label>Address</label><br />
+										<input type="checkbox" name="show" value="city"><label>City</label><br />
+										<input type="checkbox" name="show" value="state"><label>State</label><br />
+										<input type="checkbox" name="show" value="postalCode"><label>Zipcode</label><br />
+										<input type="checkbox" name="show" value="totalSales"><label>Sales</label><br />
+										<input type="checkbox" name="show" value="date"><label>Year</label><br />
+										<input type="checkbox" name="show" value="miles"><label>Distance</label>
+									</div>
+								</fieldset>
+								<button class="btn btn-default" type="submit">Submit </button>
+							</div>
+							
+						</div>
+					</form>
+					<img src="images/map.png" alt="map" class="map">
+				</div>
+				<div class="col-md-4 map-results">
+				<h2>Results</h2>
+				<ol>
+					<li>
+						<table>
+							<tr><td>Company:</td><td>Ford Dealership</td></tr>
+							<tr><td>Address:</td><td>101 Merry Little Ln </td></tr>
+							<tr><td>Distance:</td><td>2.4 Miles</td></tr>
+							<tr><td>Sales:</td><td>$102,344</td></tr>
+							<tr><td>Year:</td><td>2012</td></tr>
+						</table>
+					</li>
+					<li>
+						<table>
+							<tr><td>Company:</td><td>Ford Dealership</td></tr>
+							<tr><td>Address:</td><td>101 Merry Little Ln </td></tr>
+							<tr><td>Distance:</td><td>2.4 Miles</td></tr>
+							<tr><td>Sales:</td><td>$102,344</td></tr>
+							<tr><td>Year:</td><td>2012</td></tr>
+						</table>
+					</li>
+					<li>
+						<table>
+							<tr><td>Company:</td><td>Ford Dealership</td></tr>
+							<tr><td>Address:</td><td>101 Merry Little Ln </td></tr>
+							<tr><td>Distance:</td><td>2.4 Miles</td></tr>
+							<tr><td>Sales:</td><td>$102,344</td></tr>
+							<tr><td>Year:</td><td>2012</td></tr>
+						</table>
+					</li>
+					<li>
+						<table>
+							<tr><td>Company:</td><td>Ford Dealership</td></tr>
+							<tr><td>Address:</td><td>101 Merry Little Ln </td></tr>
+							<tr><td>Distance:</td><td>2.4 Miles</td></tr>
+							<tr><td>Sales:</td><td>$102,344</td></tr>
+							<tr><td>Year:</td><td>2012</td></tr>
+						</table>
+					</li>
+					<li>
+						<table>
+							<tr><td>Company:</td><td>Ford Dealership</td></tr>
+							<tr><td>Address:</td><td>101 Merry Little Ln </td></tr>
+							<tr><td>Distance:</td><td>2.4 Miles</td></tr>
+							<tr><td>Sales:</td><td>$102,344</td></tr>
+							<tr><td>Year:</td><td>2012</td></tr>
+						</table>
+					</li>
+					<li>
+						<table>
+							<tr><td>Company:</td><td>Ford Dealership</td></tr>
+							<tr><td>Address:</td><td>101 Merry Little Ln </td></tr>
+							<tr><td>Distance:</td><td>2.4 Miles</td></tr>
+							<tr><td>Sales:</td><td>$102,344</td></tr>
+							<tr><td>Year:</td><td>2012</td></tr>
+						</table>
+					</li>
+					<li>
+						<table>
+							<tr><td>Company:</td><td>Ford Dealership</td></tr>
+							<tr><td>Address:</td><td>101 Merry Little Ln </td></tr>
+							<tr><td>Distance:</td><td>2.4 Miles</td></tr>
+							<tr><td>Sales:</td><td>$102,344</td></tr>
+							<tr><td>Year:</td><td>2012</td></tr>
+						</table>
+					</li>
+					<li>
+						<table>
+							<tr><td>Company:</td><td>Ford Dealership</td></tr>
+							<tr><td>Address:</td><td>101 Merry Little Ln </td></tr>
+							<tr><td>Distance:</td><td>2.4 Miles</td></tr>
+							<tr><td>Sales:</td><td>$102,344</td></tr>
+							<tr><td>Year:</td><td>2012</td></tr>
+						</table>
+					</li>
+					<li>
+						<table>
+							<tr><td>Company:</td><td>Ford Dealership</td></tr>
+							<tr><td>Address:</td><td>101 Merry Little Ln </td></tr>
+							<tr><td>Distance:</td><td>2.4 Miles</td></tr>
+							<tr><td>Sales:</td><td>$102,344</td></tr>
+							<tr><td>Year:</td><td>2012</td></tr>
+						</table>
+					</li>
+				</ol>
+		<!--	<?php /*if($_SERVER["REQUEST_METHOD"] == "POST")
+					{
+						if(isset($_POST["zipcode"])&&isset($_POST["distance"]))
+						{
+						//results = Call function, pass $_POST variable, return array of dealerships
+						//<ol>
+						foreach($results as $lineNum => $result)
+						{
+						?><li><table>
+						<?php
+						$pieces = explode(".", $result);
+						if(isset($_POST["brand"]){
+							echo "<tr><td>Brand:</td><td>{$pieces[0]}</td></tr>";
+						}
+						if(isset($_POST["dealer"]){
+							echo "<tr><td>Dealer:</td><td>{$pieces[1]}</td></tr>";
+						}
+						if(isset($_POST["joinDate"]){
+							echo "<tr><td>Join Date:</td><td>{$pieces[2]}</td></tr>";
+						}
+						if(isset($_POST["dealerCode"]){
+							echo "<tr><td>Dealer Code:</td><td>{$pieces[3]}</td></tr>";
+						}
+						if(isset($_POST["regionCode"]){
+							echo "<tr><td>Region Code:</td><td>{$pieces[4]}</td></tr>";
+						}
+						if(isset($_POST["address"]){
+							echo "<tr><td>Address:</td><td>{$pieces[5]}</td></tr>";
+						}
+						if(isset($_POST["city"]){
+							echo "<tr><td>City:</td><td>{$pieces[6]}</td></tr>";
+						}
+						if(isset($_POST["state"]){
+							echo "<tr><td>State:</td><td>{$pieces[8]}</td></tr>";
+						}
+						if(isset($_POST["postalCode"]){
+							echo "<tr><td>Zipcode:</td><td>{$pieces[9]}</td></tr>";
+						}
+						if(isset($_POST["totalSales"]){
+							echo "<tr><td>Sales:</td><td>{$pieces[10]}</td></tr>";
+						}
+						if(isset($_POST["date"]){
+							echo "<tr><td>Date:</td><td>{$pieces[11]}</td></tr>";
+						}
+						if(isset($_POST["mile"]){
+							echo "<tr><td>Distance:</td><td>{$pieces[12]}</td></tr>";
+						}
+						
+						?>
+						
+						</table></li>
+						<?php
+						}
+						?>
+					<!--</ol>-->
+			<?php   }*/?>-->
+					
+					
+					
+					
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<script type="text/js" src="js/bootstrap.min.js"></script>
+</body>
+</html>
