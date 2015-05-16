@@ -1,0 +1,81 @@
+  <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Insignia Analytics</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="css/style.css">	
+	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
+	
+</head>
+<body class="container-fluid inner-page">
+	<header class="site-banner row">
+		<div class="transparent">
+			<div class="col-md-12">
+				<img src="images/full-logo.png" class="center-block img-responsive" id="insignia"/>
+			</div>
+		</div>
+	</header>
+	<div class="row">
+		<aside class="col-md-3 side-menu">
+			<div class="sidebar-nav">
+			  <div class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+				</div>
+				<div class="navbar-collapse collapse sidebar-navbar-collapse">
+				  <ul class="nav navbar-nav">
+					<li class="navbar-brand"><a href="dashboard.html"><h2>Paige Meinke</h2></a></li>
+					<li><a href="mapped.html">Mapped Out</a></li>
+					<li><a href="charting.html">Charting</a></li>
+					<li><a href="databases.html">Databases</a></li>
+				  </ul>
+				</div><!--/.nav-collapse -->
+			  </div>
+			</div>
+		</aside>
+		<div class="col-md-9 charted">
+		<div id="chart_div">
+		</div>
+	
+	  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+  google.load('visualization', '1', {packages: ['corechart', 'bar']});
+google.setOnLoadCallback(drawBarColors);
+
+function drawBarColors() {
+      var data = google.visualization.arrayToDataTable([
+        ['Dealership', '2013', '2014'],
+        ['Bay Chevrolet, AZ', 81750, 80080],
+        ['Kendall Toyota, AZ', 37920, 36940],
+        ['Camelback Toyota, AZ', 26950, 28960],
+        ['Hatch Toyota, AZ', 20990, 19530],
+        ['Mossy Ford, AZ', 15260, 15170]
+      ]);
+
+      var options = {
+        title: 'Sales of',
+        chartArea: {width: '50%'},
+        colors: ['#b0120a', '#ffab91'],
+        hAxis: {
+          title: 'Total Sales',
+          minValue: 0
+        },
+        vAxis: {
+          title: 'Dealerships'
+        }
+      };
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+	</script>
+	</div>
+</body>
+</html>
