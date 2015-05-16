@@ -70,6 +70,25 @@ $(document).ready(function() {
 			}	
 		}
 	});
+	
+	function readTextFile()
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", "C:/wamp/www/WiredHack_May15/josephtest/USzip.txt", false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                return(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+}
+console.log( readTextFile());
 	$.ajax({
 		type:"GET",
 		url: "data.php",

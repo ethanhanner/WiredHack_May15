@@ -1,7 +1,7 @@
 <?php
-$servername = "127.0.0.1";
+$servername = "localhost";
 $username = "root";
-$password = "";
+$password = "vmo55";
 
 $state = $_GET['state'];
 

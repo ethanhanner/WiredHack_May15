@@ -109,15 +109,18 @@ function initialize() {
 		});
 	}  
 	console.log(dealerships.length);
-	for (var x = 0; x < dealerships.length; x++) {
+	var x;
+	for (x = 0; x < dealerships.length; x++) {
 		if (geocoder) {
+			console.log("1: " + x);
 			geocoder.geocode({ 'address': addresses[x].address }, function (results, status) {
+				console.log("2: " + x);
 				if (status == google.maps.GeocoderStatus.OK) {
 					// IF GEOLOCATION API WORKS
 					tempfrm.lat2 = results[0].geometry.location.A;
 					tempfrm.lon2 = results[0].geometry.location.F;
 					tempfrm.mi = distance(tempfrm.lat1,tempfrm.lon1,tempfrm.lat2,tempfrm.lon2);
-					tempfrm.meters = 1609.34 * tempfrm.mi
+					tempfrm.meters = 1609.34 * tempfrm.mi;
 					if(tempfrm.meters <= radius) {
 						var addressLocation = new google.maps.LatLng(results[0].geometry.location.A, results[0].geometry.location.F);
 						console.log(x);
@@ -126,7 +129,6 @@ function initialize() {
 							map: map,
 							title: addresses[x].dealerName
 						});
-						console.log(i);
 						var contentString = '<div id="infoWindow'+x+'" class="infoWindow">'+
 							'<div class="siteNotice">'+
 							'</div>'+
