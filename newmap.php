@@ -45,7 +45,8 @@ function initialize() {
 	var geocoder = new google.maps.Geocoder();
 	
 	//set zipCode for radius of Circle
-	var zipCode = '29733';
+	var zipCode = '80121';
+	var radius = 80467.2;
 	
 	//set the addresses for all markers
 	var index;
@@ -95,9 +96,15 @@ function initialize() {
 				console.log(results[0].geometry.location);
 				tempfrm.lat1 = results[0].geometry.location.A;
 				tempfrm.lon1 = results[0].geometry.location.F;
+				var zipLatLng = new google.maps.LatLng(tempfrm.lat1, tempfrm.lon1);
+				var mapOptions = {
+					zoom: 7,
+					center: zipLatLng
+				};
+				map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 				var radiusCenter = new google.maps.LatLng(results[0].geometry.location.A, results[0].geometry.location.F);
 				
-				var populationOptions = {
+				var circleOptions = {
 					strokeColor: '#0000FF',
 					strokeOpacity: 0.7,
 					strokeWeight: 1,
@@ -105,10 +112,10 @@ function initialize() {
 					fillOpacity: 0.15,
 					map: map,
 					center: radiusCenter,
-					radius: 32186.9
+					radius: radius
 				};
 				// Add the circle for this city to the map.
-				cityCircle = new google.maps.Circle(populationOptions);
+				cityCircle = new google.maps.Circle(circleOptions);
 			}
 			else {
 				console.log("Geocoding failed: " + status);
@@ -127,36 +134,37 @@ function initialize() {
 					tempfrm.mi = distance(tempfrm.lat1,tempfrm.lon1,tempfrm.lat2,tempfrm.lon2);
 					tempfrm.meters = 1609.34 * tempfrm.mi
 					console.log("Distance = ", tempfrm.mi, tempfrm.meters);
-					var addressLocation = new google.maps.LatLng(results[0].geometry.location.A, results[0].geometry.location.F);
+					if(tempfrm.meters <= radius) {
+						var addressLocation = new google.maps.LatLng(results[0].geometry.location.A, results[0].geometry.location.F);
 					
-					var marker = new google.maps.Marker({
-						position: addressLocation,
-						map: map,
-						title: 'New Address'
-					});
+						var marker = new google.maps.Marker({
+							position: addressLocation,
+							map: map,
+							title: 'New Address'
+						});
 					
-					var contentString = '<div class="infoWindow">'+
-						'<div class="siteNotice">'+
-						'</div>'+
-						'<h1 class="firstHeading">Sample Chevrolet</h1>'+
-						'<div class="infoContent">'+
-						'<ul>'+
-						'<li><b>Brand: </b>Chevrolet</li>'+
-						'<li><b>Dealer Code: </b>'+ addresses[location].dealerCode +'</li>'+
-						'<li><b><u>Address</u></b></li>'+
-						'<li>2900 Government Blvd.<br/>Mobile, AL 36606</li>'+
-						'</ul>'+
-						'</div>'+
-						'</div>';
+						var contentString = '<div class="infoWindow">'+
+							'<div class="siteNotice">'+
+							'</div>'+
+							'<h1 class="firstHeading">Sample Chevrolet</h1>'+
+							'<div class="infoContent">'+
+							'<ul>'+
+							'<li><b>Brand: </b>Chevrolet</li>'+
+							'<li><b>Dealer Code: </b>'+ addresses[location].dealerCode +'</li>'+
+							'<li><b><u>Address</u></b></li>'+
+							'<li>2900 Government Blvd.<br/>Mobile, AL 36606</li>'+
+							'</ul>'+
+							'</div>'+
+							'</div>';
 				
-					var infowindow = new google.maps.InfoWindow({
-						content: contentString
-					});
+						var infowindow = new google.maps.InfoWindow({
+							content: contentString
+						});
 					
-					google.maps.event.addListener(marker, 'click', function() {
-						infowindow.open(map,marker);
-					});
-					
+						google.maps.event.addListener(marker, 'click', function() {
+							infowindow.open(map,marker);
+						});
+					}
 				}
 				else {
 					console.log("Geocoding failed: " + status);
@@ -164,25 +172,6 @@ function initialize() {
 			});
 		} 
 	}
-	
-
-	var dealerLocation = new google.maps.LatLng(34.885758, -81.0204865);
-	var zipLatLng = new google.maps.LatLng(34.885758, -81.0204865);
-	var mapOptions = {
-		zoom: 9,
-		center: zipLatLng
-	};
-	map = new google.maps.Map(document.getElementById('map-canvas'),
-	  mapOptions);
-	  
-	var marker = new google.maps.Marker({
-		position: dealerLocation,
-		map: map,
-		title: 'Sample Chevrolet'
-	});
-	
-	
-	
 }
 
 
@@ -286,6 +275,8 @@ function distance(lat1, lon1, lat2, lon2) {
 		$records = array();
 		if ($result->num_rows > 0) {
 			foreach($result as $row) {
+				$row["DealerName"] = str_replace(",", " ", $row["DealerName"]);
+				$row["Address1"] = str_replace(",", " ", $row["Address1"]);
 				$records[$index] = json_encode($row);
 				$index += 1;
 			}
@@ -293,10 +284,15 @@ function distance(lat1, lon1, lat2, lon2) {
 			echo "0 results";
 		}
 		
+		$numRecords = sizeof($records);
+		$count = 0;
 		echo htmlspecialchars("[");
 		foreach($records as $curr) {
+			$count += 1;
 			echo htmlspecialchars($curr);
-			echo htmlspecialchars(", ");
+			if($count != $numRecords) {
+				echo htmlspecialchars(", ");
+			}
 		}
 		echo htmlspecialchars("]");
 

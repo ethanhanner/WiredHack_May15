@@ -30,23 +30,31 @@
 			echo "\n";
 		}
 		
-		$sql = "SELECT * FROM Dealership;";
+		$sql = "SELECT * FROM Dealership WHERE State = 'FL';";
 		$result = $conn->query($sql);
 		$index = 0;
 		$records = array();
 		if ($result->num_rows > 0) {
 			foreach($result as $row) {
+				$row["DealerName"] = str_replace(",", " ", $row["DealerName"]);
+				$row["Address1"] = str_replace(",", " ", $row["Address1"]);
 				$records[$index] = json_encode($row);
+				echo ("records[" . $index . "] = " . $records[$index]);
 				$index += 1;
 			}
 		} else {
 			echo "0 results";
 		}
 		
+		$numRecords = sizeof($records);
+		$count = 0;
 		echo htmlspecialchars("[");
 		foreach($records as $curr) {
+			$count += 1;
 			echo htmlspecialchars($curr);
-			echo htmlspecialchars(", ");
+			if($count != $numRecords) {
+				echo htmlspecialchars(", ");
+			}
 		}
 		echo htmlspecialchars("]");
 
