@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
   <head>
     <title>Simple Map</title>
@@ -28,10 +28,16 @@
       }
     </style>
     <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script>
-
+		var dealerships;
+		function getPHPdata() {
+			var div = document.getElementById("dom-target");
+			dealerships = div.textContent;
+			dealerships = JSON.parse(dealerships);
+			initialize();
+		}
 
 var map;
 function initialize() {
@@ -42,26 +48,34 @@ function initialize() {
 	var zipCode = '29733';
 	
 	//set the addresses for all markers
+	var index;
 	var addresses = {};
-	addresses[0] = {
-		address: '882 Maplewood Ln. Rock Hill, SC 29730',
-		dealerCode: '112897'
-	};
-	addresses[1] = {
-		address: '36037',
-		dealerCode: '112897'
-	};
-	addresses[2] = {
-		address: 'Fort Mill, SC',
-		dealerCode: '111111'
-	};
-	var data_from_ajax = {};
+	var add;
+	for(index = 0; index < dealerships.length; index++) {
+		add = dealerships[index].Address1 + " ";
+		add += dealerships[index].City + ", ";
+		add += dealerships[index].State + " ";
+		add += dealerships[index].PostalCode;
+		addresses[index] = {
+			address: add,
+			dealerCode: dealerships[index].DealerCode
+		};
+	}
+	
+	//addresses[0] = {
+		//address: '882 Maplewood Ln. Rock Hill, SC 29730',
+		//dealerCode: '112897'
+	//};
+	//addresses[1] = {
+		//address: '36037',
+		//dealerCode: '112897'
+	//};
+	//addresses[2] = {
+		//address: 'Fort Mill, SC',
+		//dealerCode: '111111'
+	//};
 
-$.get('http://localhost/WiredHack_May15/selectdata.php', function(data) {
-  data_from_ajax = data;
-  console.log(data_from_ajax)
-});
-console.log(data_from_ajax);
+
 	var tempfrm = {
 		lat1 : '0',
 		lat2 : '0',
@@ -172,7 +186,7 @@ console.log(data_from_ajax);
 }
 
 
-google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(window, 'load', getPHPdata);
 
 /*
 
@@ -247,7 +261,48 @@ function distance(lat1, lon1, lat2, lon2) {
 
     </script>
   </head>
-  <body>
+<body>
     <div id="map-canvas"></div>
-  </body>
+	<div id="dom-target" style="display:none;">
+	<?php
+		$servername = "localhost";
+		$username = "root";
+		$password = "vmo55";
+		
+		$conn = new mysqli($servername, $username, $password);
+		if($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+		$sql = "use Insignia;";
+		if($conn->query($sql) === FALSE) {
+			echo "Error selecting database: " . $conn->error;
+			echo "<br/>";
+			echo "\n";
+		}
+		
+		$sql = "SELECT * FROM Dealership;";
+		$result = $conn->query($sql);
+		$index = 0;
+		$records = array();
+		if ($result->num_rows > 0) {
+			foreach($result as $row) {
+				$records[$index] = json_encode($row);
+				$index += 1;
+			}
+		} else {
+			echo "0 results";
+		}
+		
+		echo htmlspecialchars("[");
+		foreach($records as $curr) {
+			echo htmlspecialchars($curr);
+			echo htmlspecialchars(", ");
+		}
+		echo htmlspecialchars("]");
+
+		
+		$conn->close();
+	?>
+	</div>
+</body>
 </html>
